@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <title>Movie DB Manager</title>
+</head>
+<body>
+    <button class="collectBtn" onclick="collectDbEntries()">Collect DB Entries</button>
+    <button class="reload" style="display: none;" onclick="location.reload()">Refresh Collector</button>
+    <div class="databaseOutput" style="display: flex; flex-direction: column"></div class="databaseOutput">
+</body>
+<script>
+    function collectDbEntries() {
+        const output = document.querySelector(".databaseOutput")
+        fetch("http://localhost:5000/movies", methods=["GET"]).then(function (response) {
+            return response.json()
+        }).then(function (jsonData) {
+            console.log(jsonData)
+            document.querySelector(".collectBtn").style.display = "none"
+            document.querySelector(".reload").style.display = "block"
+            jsonData.forEach( (entry) => {
+                personalDiv = document.createElement('div')
+                fullEntry = `title: ${entry.title} year: ${entry.year} genre: ${entry.genre} rating: ${entry.rating} starring: ${entry.starring}`
+                fullEntryText = document.createTextNode(fullEntry)
+                personalDiv.appendChild(fullEntryText)
+                output.appendChild(personalDiv)
+            })
+            
+        }).catch(function (error) {
+            console.error("Failed to fetch DB data")
+        })
+    }
+</script>
+</html>

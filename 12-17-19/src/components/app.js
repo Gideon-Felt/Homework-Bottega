@@ -7,6 +7,7 @@ import Comp1 from "./comp1";
 import Comp2 from "./comp2";
 import NavBar from "./navbar";
 import CurrentDate from "./time";
+import Name from "./name";
 
 import "../style/main.scss";
 
@@ -16,6 +17,7 @@ export default function App() {
       <BrowserRouter>
         <div>
           <NavBar />
+          <Name name="Gideon Felt" />
           <switch>
             <Route exact path="/" component={Home} />
             <Route path="/component1" component={Comp1} />

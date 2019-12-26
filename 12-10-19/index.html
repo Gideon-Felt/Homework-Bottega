@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+</head>
+<body>
+    <div class="changeColor"></div>
+</body>
+
+<script>
+    function hexcolorGenerator () {
+        const hex =  `#${Math.floor(Math.random()*16777215).toString(16)}`
+        document.body.style.cssText = `background-color: ${hex}`
+        console.log(hex)
+    }
+
+    function makeAlphabetic(myString) {
+        return myString.toLowerCase().replace(' ','').split('').sort().join('')
+    }
+
+    function printMyObjectValues(myObject) {
+        for (const key in myObject) {
+            const newPTag = document.createElement('p')
+            const newContent = document.createTextNode(`Key = ${key} => ${myObject[key]}`)
+            newPTag.appendChild(newContent)
+            document.body.appendChild(newPTag)
+        }
+    }
+
+    class Student {
+        constructor(name, email) {
+            this.name = name
+            this.email = email
+
+        }
+
+        myEmail(you) {
+            return `I'm: ${this.name}, and my email is ${this.email} and you are: ${you}`
+        }
+
+        sendEmail(msg) {
+            return `sending: "${msg}" to ${this.email}`
+        }
+
+        static studentId() {
+            return "I'm a Bottega Student :)"
+        }
+        
+    }
+
+
+    hexcolorGenerator()
+    alert(makeAlphabetic('BDCAACDEAFGE'))
+    printMyObjectValues({firstName: "Gideon", lastName: "Felt", height: "5'11"})
+    const me = new Student('Gideon', "gideon@devcamp.com")
+    console.log(me.sendEmail("Hello, Welcome to my class Student."))
+
+</script>
+</html>
